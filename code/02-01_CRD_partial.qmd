@@ -139,7 +139,7 @@ If data is balanced, type 1 and 3 give same results.
 For sake of peace of mind, it is simpler to just always use type 3.  
 
 ```{r ANOVA}
-Anova(crd_mod, type = 3)
+Anova(crd_mod, type = "3")
 ```
 
 Whenever your model has interaction terms, need to look at them first.  (Show to audience break down of interactions). 
@@ -367,7 +367,7 @@ ggplot() +
                  y = emmean,
                  label = letter
                  )) +
-  facet_grid(.~nrate_kgha,)
+  facet_grid(.~nrate_kgha)
 ```
 
 Here, facet grid is useful to add letter based on the different way on how we extacted means. 
