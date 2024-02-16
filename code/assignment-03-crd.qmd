@@ -160,6 +160,8 @@ crd_resid
 
 ## Residual independence
 
+Since no particular pattern is shown in the fitted vs residuals plot, and additionally the pattern shown by the geom_smooth is not highlighting any particular shape we can say the our residuals are independent. 
+
 ```{r}
 crd_resid %>% ggplot(aes(x = .fitted,
                          y = .studresid)) +
@@ -174,6 +176,7 @@ crd_resid %>% ggplot(aes(x = .fitted,
 ```
 
 ## Residual homoscedasticity
+Residuals seems to have an homogeneous distribution based on the vertical spread shown. The residuals are not forming a fan shape and seems constan across values in the x-axis. 
 
 ```{r}
 crd_resid %>% ggplot(aes(x = .fitted,
@@ -189,6 +192,7 @@ crd_resid %>% ggplot(aes(x = .fitted,
 ```
 
 ## Residual normality
+Eventhough not all of the points fall along the straight 1:1 line, data seems relatively normal. The histogram shows an slight bimodal pattern for larger values but the bell shape is more prominent. 
 
 ```{r}
 ggplot(crd_resid, aes(sample = .studresid)) +
@@ -203,6 +207,20 @@ ggplot(crd_resid, aes(x = .studresid)) +
 ```
 
 ## Residual Outliers
+```{r}
+crd_resid %>% ggplot(aes(x = .fitted,
+                         y = .studresid)) +
+  geom_point( shape = 21,
+              fill = 'green4',
+              size = 3,
+              alpha = 0.6
+              ) +
+  geom_hline(yintercept = c(-3,0,3), color = 'red3') +
+  geom_smooth() +
+  theme_bw()
+```
+Again, the fitted vs residual plot is our best reference to judge outliers. The red lines are limiting the studentized residual scale (-3,3) and the graph shows all observations fall in between the red lines, meaning that all standard deviations are within 3+- std fmo the mean. Nothing to worry about here!! 
+
 
 # h) Model means
 
