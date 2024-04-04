@@ -160,7 +160,7 @@ crd_resid
 
 ## Residual independence
 
-Since no particular pattern is shown in the fitted vs residuals plot, and additionally the pattern shown by the geom_smooth is not highlighting any particular shape we can say the our residuals are independent. 
+Since no particular pattern is shown in the fitted vs residuals plot, and additionally the pattern shown by the geom_smooth is not highlighting any particular shape we can say the our residuals are independent.
 
 ```{r}
 crd_resid %>% ggplot(aes(x = .fitted,
@@ -176,7 +176,8 @@ crd_resid %>% ggplot(aes(x = .fitted,
 ```
 
 ## Residual homoscedasticity
-Residuals seems to have an homogeneous distribution based on the vertical spread shown. The residuals are not forming a fan shape and seems constan across values in the x-axis. 
+
+Residuals seems to have an homogeneous distribution based on the vertical spread shown. The residuals are not forming a fan shape and seems constan across values in the x-axis.
 
 ```{r}
 crd_resid %>% ggplot(aes(x = .fitted,
@@ -192,7 +193,8 @@ crd_resid %>% ggplot(aes(x = .fitted,
 ```
 
 ## Residual normality
-Eventhough not all of the points fall along the straight 1:1 line, data seems relatively normal. The histogram shows an slight bimodal pattern for larger values but the bell shape is more prominent. 
+
+Eventhough not all of the points fall along the straight 1:1 line, data seems relatively normal. The histogram shows an slight bimodal pattern for larger values but the bell shape is more prominent.
 
 ```{r}
 ggplot(crd_resid, aes(sample = .studresid)) +
@@ -207,6 +209,7 @@ ggplot(crd_resid, aes(x = .studresid)) +
 ```
 
 ## Residual Outliers
+
 ```{r}
 crd_resid %>% ggplot(aes(x = .fitted,
                          y = .studresid)) +
@@ -219,20 +222,19 @@ crd_resid %>% ggplot(aes(x = .fitted,
   geom_smooth() +
   theme_bw()
 ```
-Again, the fitted vs residual plot is our best reference to judge outliers. The red lines are limiting the studentized residual scale (-3,3) and the graph shows all observations fall in between the red lines, meaning that all standard deviations are within 3+- std fmo the mean. Nothing to worry about here!! 
 
+Again, the fitted vs residual plot is our best reference to judge outliers. The red lines are limiting the studentized residual scale (-3,3) and the graph shows all observations fall in between the red lines, meaning that all standard deviations are within 3+- std fmo the mean. Nothing to worry about here!!
 
 # h) Model means
 
 Use this section to extract model means according to your decision of the ANOVA table effects.
 
-If we recall the study objective: assess the effect of different N and K rates on wheat yield. Based on the ANOVA we can conclude that the effect of interactions or the effects of N rates are not significant on wheat yield. The only significant effect are the different K rates. 
+If we recall the study objective: assess the effect of different N and K rates on wheat yield. Based on the ANOVA we can conclude that the effect of interactions or the effects of N rates are not significant on wheat yield. The only significant effect are the different K rates.
 
 ```{r}
 crd_means_k <- emmeans(crd_mod, ~ krate_kgha)
 crd_means_k
 ```
-
 
 # i) Pairwise comparisons
 
@@ -248,7 +250,6 @@ crd_cld_k <- cld(crd_means_k,
 crd_cld_k
 ```
 
-
 # g) Final plot(s)
 
 Produce final plot(s) to show your results.\
@@ -261,7 +262,6 @@ In class, we did not have time to make it publication-ready (e.g., a plot lookin
 Here, make sure you deliver final plot(s) that is/are publication ready.
 
 Make sure to provide an interpretation for the plot(s) created, including which treatment levels were significantly higher/lower.
-
 
 ```{r}
 ggplot(mapping = aes(fill = krate_kgha )) +
@@ -292,7 +292,8 @@ ggplot(mapping = aes(fill = krate_kgha )) +
   scale_fill_viridis_d(option = "E")
   
 ```
-As K rate treatment factor was the only significant effect,  levels indicate a rate of 30 and 60 kg/ha increase wheat yield significantly compared with no K fertilization.  
+
+As K rate treatment factor was the only significant effect, levels indicate a rate of 30 and 60 kg/ha increase wheat yield significantly compared with no K fertilization.
 
 # Submitting your work
 
